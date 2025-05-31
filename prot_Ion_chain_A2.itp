@@ -1,0 +1,33 @@
+;
+;	File 'prot_Ion_chain_A2.itp' was generated
+;	By user: rhalder (602462)
+;	On host: endeavour1.hpc.usc.edu
+;	At date: Sat Nov  9 14:00:28 2024
+;
+;	This is a include topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2020.3 (-:
+;	
+;	Executable:   /spack/apps/linux-centos7-x86_64/gcc-8.3.0/gromacs-2020.3/build/bin/gmx_mpi
+;	Data prefix:  /spack/apps/linux-centos7-x86_64/gcc-8.3.0/gromacs-2020.3 (source tree)
+;	Working dir:  /project/warshel_155/ritaban/myosin/mod_myovi_2v26/final_swissmodel/aficamten/wild_without_aficam_phos/final-wild
+;	Command line:
+;	  gmx_mpi pdb2gmx -f prot.pdb -p prot.top -o prot.gro
+;	Force field was read from current directory or a relative path - path added.
+;
+
+[ moleculetype ]
+; Name            nrexcl
+Ion_chain_A2        3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue 1002 MG  rtp MG   q +2.0
+     1         MG   1002     MG     MG      1          2     24.305   ; qtot 2
+
+; Include Position restraint file
+#ifdef POSRES
+#include "posre_Ion_chain_A2.itp"
+#endif
+

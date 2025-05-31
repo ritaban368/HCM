@@ -1,0 +1,54 @@
+;
+;	File 'prot.top' was generated
+;	By user: rhalder (602462)
+;	On host: endeavour1.hpc.usc.edu
+;	At date: Thu Oct 31 12:06:29 2024
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2020.3 (-:
+;	
+;	Executable:   /spack/apps/linux-centos7-x86_64/gcc-8.3.0/gromacs-2020.3/build/bin/gmx_mpi
+;	Data prefix:  /spack/apps/linux-centos7-x86_64/gcc-8.3.0/gromacs-2020.3 (source tree)
+;	Working dir:  /project/warshel_155/ritaban/myosin/mod_myovi_2v26/final_swissmodel/aficamten/wild_without_aficam_phos
+;	Command line:
+;	  gmx_mpi pdb2gmx -f prot.pdb -p prot.top -o prot.gro
+;	Force field was read from current directory or a relative path - path added.
+;
+
+; Include forcefield parameters
+#include "./charmm36-jul2022.ff/forcefield.itp"
+#include "./charmm36-jul2022.ff/afi_ffbonded.itp
+;Include ligand parameters
+#include "vnl1.prm"
+; Include chain topologies
+#include "prot_Protein_chain_A.itp"
+#include "prot_Ion_chain_A2.itp"
+#include "vnl1.itp"
+#include "afi.itp"
+; Include water topology
+#include "./charmm36-jul2022.ff/spce.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "./charmm36-jul2022.ff/ions.itp"
+
+[ system ]
+; Name
+Protein in water
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+Ion_chain_A2        1
+VNL1                1
+afi                 1
+SOL         39705
+NA               1
